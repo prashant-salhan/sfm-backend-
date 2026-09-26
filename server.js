@@ -50,7 +50,7 @@ const enquirySchema = new mongoose.Schema(
     message: { type: String, trim: true, default: "" },
     travelDate: { type: String, trim: true, default: "" },
     travellers: { type: String, trim: true, default: "" },
-    source: { type: String, enum: ["contact_form", "modal_planner", "quick_enquiry"], default: "contact_form" },
+    source: { type: String, default: "contact_form" },
     status: { type: String, enum: ["new", "in_progress", "contacted", "closed"], default: "new" },
   },
   { timestamps: true }
