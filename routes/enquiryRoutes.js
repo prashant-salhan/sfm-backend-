@@ -6,19 +6,22 @@ const router = express.Router();
 // POST /api/enquiries
 router.post("/", async (req, res) => {
   try {
-    const { fullName, phone, destination, message } = req.body;
+    const { fullName, phone, destination, message, travelDate, travellers, source } = req.body;
 
-    if (!fullName || !phone || !destination || !message) {
+    if (!fullName || !phone) {
       return res.status(400).json({
-        message: "All fields are required",
+        message: "Full name and phone number are required",
       });
     }
 
     const enquiry = await Enquiry.create({
-      fullName,
-      phone,
-      destination,
-      message,
+      fullName: String(fullName).trim(),
+      phone: String(phone).trim(),
+      destination: destination ? String(destination).trim() : "Incredible India Tour Package",
+      message: message ? String(message).trim() : "",
+      travelDate: travelDate ? String(travelDate).trim() : "",
+      travellers: travellers ? String(travellers).trim() : "",
+      source: source ? String(source).trim() : "india_portal_popup",
     });
 
     res.status(201).json({

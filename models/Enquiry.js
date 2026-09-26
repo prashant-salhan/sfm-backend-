@@ -14,8 +14,8 @@ const enquirySchema = new mongoose.Schema(
     },
     destination: {
       type: String,
-      required: [true, "Destination is required"],
       trim: true,
+      default: "Incredible India Tour Package",
     },
     message: {
       type: String,
@@ -34,7 +34,6 @@ const enquirySchema = new mongoose.Schema(
     },
     source: {
       type: String,
-      enum: ["contact_form", "modal_planner", "quick_enquiry"],
       default: "contact_form",
     },
     status: {
