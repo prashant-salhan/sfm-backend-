@@ -514,7 +514,7 @@ app.post(["/api/admin/login", "/admin/login"], async (req, res) => {
     if (!isValidUser || !isValidPass) {
       return res.status(401).json({
         success: false,
-        error: "Invalid username or password. Please verify your credentials or use 'admin' with your password.",
+        error: "Invalid username or password. Please verify your admin credentials.",
       });
     }
 
