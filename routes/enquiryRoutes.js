@@ -6,7 +6,7 @@ const router = express.Router();
 // POST /api/enquiries
 router.post("/", async (req, res) => {
   try {
-    const { fullName, phone, destination, message, travelDate, travellers, source } = req.body;
+    const { fullName, phone, email, destination, message, travelDate, travellers, source } = req.body;
 
     if (!fullName || !phone) {
       return res.status(400).json({
@@ -17,6 +17,7 @@ router.post("/", async (req, res) => {
     const enquiry = await Enquiry.create({
       fullName: String(fullName).trim(),
       phone: String(phone).trim(),
+      email: email ? String(email).trim() : "",
       destination: destination ? String(destination).trim() : "Incredible India Tour Package",
       message: message ? String(message).trim() : "",
       travelDate: travelDate ? String(travelDate).trim() : "",

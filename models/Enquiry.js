@@ -12,6 +12,11 @@ const enquirySchema = new mongoose.Schema(
       required: [true, "Phone number is required"],
       trim: true,
     },
+    email: {
+      type: String,
+      trim: true,
+      default: "",
+    },
     destination: {
       type: String,
       trim: true,

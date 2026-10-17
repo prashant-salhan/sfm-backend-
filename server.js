@@ -48,6 +48,7 @@ const enquirySchema = new mongoose.Schema(
   {
     fullName: { type: String, required: [true, "Full name is required"], trim: true },
     phone: { type: String, required: [true, "Phone number is required"], trim: true },
+    email: { type: String, trim: true, default: "" },
     destination: { type: String, required: [true, "Destination is required"], trim: true },
     message: { type: String, trim: true, default: "" },
     travelDate: { type: String, trim: true, default: "" },
@@ -201,7 +202,7 @@ app.get(["/api/health", "/health"], (req, res) => {
 app.post(["/api/enquiries", "/enquiries"], async (req, res) => {
   try {
     const body = req.body || {};
-    const { fullName, name, phone, destination, message, travelDate, travellers, source } = body;
+    const { fullName, name, phone, email, destination, message, travelDate, travellers, source } = body;
 
     const actualName = fullName || name;
 
@@ -215,6 +216,7 @@ app.post(["/api/enquiries", "/enquiries"], async (req, res) => {
     const enquiry = new Enquiry({
       fullName: actualName,
       phone,
+      email: email ? String(email).trim() : "",
       destination,
       message: message || "",
       travelDate: travelDate || "",
